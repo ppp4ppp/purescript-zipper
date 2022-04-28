@@ -65,3 +65,7 @@ toList (Zipper b c a) = (reverse b) <> (c : a)
 length :: forall a. Zipper a -> Int
 length Empty = 0
 length (Zipper b _ c) = 1 + (L.length b) + (L.length c)
+
+overfocus :: forall a. (a -> a) -> Zipper a -> Zipper a
+overfocus _ Empty = Empty
+overfocus f (Zipper a b c) = (Zipper a (f b) c)
