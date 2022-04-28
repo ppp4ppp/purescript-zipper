@@ -1,13 +1,5 @@
 module Data.Zipper 
-  ( Zipper
-  , fromList
-  , singleton
-  , current
-  , forward
-  , backward
-  , toList
-  , length
-  ) where
+   where
 
 import Data.Foldable (class Foldable, foldl, foldr, foldMap)
 import Data.List ((:), reverse, List(..))
