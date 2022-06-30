@@ -24,6 +24,8 @@ data Zipper a =
 
 instance Eq (Zipper a) where
   eq (Zipper xs1 _ ys1) (Zipper xs2 _ ys2) = ((L.length xs1) == (L.length xs2)) && ((L.length ys1) == (L.length ys2))
+  eq Empty _ = false
+  eq _ Empty = false
 
 
 instance showZipper :: Show a => Show (Zipper a) where
