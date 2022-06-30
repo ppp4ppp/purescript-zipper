@@ -1,6 +1,16 @@
 module Data.Zipper 
-   where
+  ( Zipper
+  , fromList
+  , singleton
+  , current
+  , forward
+  , backward
+  , toList
+  , length
+  ) where
 
+import Prelude ((&&))
+import Data.Eq
 import Data.Foldable (class Foldable, foldl, foldr, foldMap)
 import Data.List ((:), reverse, List(..))
 import Data.List as L
@@ -11,6 +21,10 @@ import Prelude (class Apply, class Functor, class Semigroup, class Show, show, (
 data Zipper a = 
     Empty
   | Zipper (List a) a (List a)
+
+instance Eq (Zipper a) where
+  eq (Zipper xs1 _ ys1) (Zipper xs2 _ ys2) = ((L.length xs1) == (L.length xs2)) && ((L.length ys1) == (L.length ys2))
+
 
 instance showZipper :: Show a => Show (Zipper a) where
   show Empty          = "Empty"
@@ -65,7 +79,3 @@ toList (Zipper b c a) = (reverse b) <> (c : a)
 length :: forall a. Zipper a -> Int
 length Empty = 0
 length (Zipper b _ c) = 1 + (L.length b) + (L.length c)
-
-overfocus :: forall a. (a -> a) -> Zipper a -> Zipper a
-overfocus _ Empty = Empty
-overfocus f (Zipper a b c) = (Zipper a (f b) c)
