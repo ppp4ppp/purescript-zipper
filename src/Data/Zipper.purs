@@ -9,6 +9,7 @@ module Data.Zipper
   , length
   ) where
 
+import Data.Eq
 import Data.Foldable (class Foldable, foldl, foldr, foldMap)
 import Data.List ((:), reverse, List(..))
 import Data.List as L
@@ -19,6 +20,10 @@ import Prelude (class Apply, class Functor, class Semigroup, class Show, show, (
 data Zipper a = 
     Empty
   | Zipper (List a) a (List a)
+
+instance Eq (Zipper a) where
+  eq (Zipper xs1 _ ys1) (Zipper xs2 _ ys2) = ((L.length xs1) == (L.length xs2)) && ((L.length ys1) == (L.length ys2))
+
 
 instance showZipper :: Show a => Show (Zipper a) where
   show Empty          = "Empty"
