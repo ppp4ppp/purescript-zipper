@@ -1,13 +1,4 @@
-module Data.Zipper 
-  ( Zipper
-  , fromList
-  , singleton
-  , current
-  , forward
-  , backward
-  , toList
-  , length
-  ) where
+module Data.Zipper where
 
 import Prelude ((&&))
 import Data.Eq
