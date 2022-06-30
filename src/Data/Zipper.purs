@@ -9,6 +9,7 @@ module Data.Zipper
   , length
   ) where
 
+import Prelude ((&&))
 import Data.Eq
 import Data.Foldable (class Foldable, foldl, foldr, foldMap)
 import Data.List ((:), reverse, List(..))
