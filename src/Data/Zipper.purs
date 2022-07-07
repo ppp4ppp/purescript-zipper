@@ -13,8 +13,8 @@ data Zipper a =
     Empty
   | Zipper (List a) a (List a)
 
-instance Eq (Zipper a) where
-  eq (Zipper xs1 _ ys1) (Zipper xs2 _ ys2) = ((L.length xs1) == (L.length xs2)) && ((L.length ys1) == (L.length ys2))
+instance (Eq a) => Eq (Zipper a) where
+  eq (Zipper xs1 a1 ys1) (Zipper xs2 a2 ys2) = (( xs1) == ( xs2)) && (( ys1) == ( ys2)) && a1 == a2
   eq Empty _ = false
   eq _ Empty = false
 
